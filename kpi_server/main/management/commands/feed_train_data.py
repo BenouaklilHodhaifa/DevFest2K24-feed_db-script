@@ -1,13 +1,16 @@
 import pandas as pd
 import requests
 from tqdm import tqdm
+from pathlib import Path
 
 def get_data_entry(df):
     for index, row in df.iterrows():
         yield index, row
 
 def feed_data():
-    df = pd.read_csv("/Users/hodhaifabenouaklil/Documents/Me/Competitions/DevFest2K24/ai-model/kpi_server/main/management/commands/train_set_rec.csv")
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    file_path = BASE_DIR / "commands/train_set_rec.csv"
+    df = pd.read_csv(file_path)
     for _, row in tqdm(get_data_entry(df)):
         data = dict(row)
         data['timestamp'] = data['Timestamp']
