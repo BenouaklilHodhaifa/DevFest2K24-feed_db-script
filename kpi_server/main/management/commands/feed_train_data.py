@@ -46,11 +46,11 @@ def feed_data():
                 # Get next row from selected DataFrame
                 _, row = next(iterators[kpi_name])
                 data = prepare_data(dict(row))
-                
+                print(data)
                 # Send the data
                 response = requests.post('https://devfest2k24-backend.onrender.com/kpi/', json=data)
                 
-                if response.status_code != 200:
+                if response.status_code != 201:
                     print(f"Error sending data for {kpi_name}: {response.status_code}")
                 
                 pbar.update(1)
