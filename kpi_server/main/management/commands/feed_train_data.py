@@ -42,7 +42,7 @@ def feed_data():
     dfs = {kpi_name: df[df['KPI_Name'] == kpi_name] for kpi_name in kpi_name_values}
     
     # Process DataFrames concurrently
-    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=len(kpi_name_values)) as executor:
         futures = [
             executor.submit(process_kpi_df, kpi_name, kpi_df) 
             for kpi_name, kpi_df in dfs.items()
