@@ -27,8 +27,6 @@ def process_kpi_df(kpi_name, kpi_df):
     for _, row in tqdm(get_data_entry(kpi_df)):
         data = prepare_data(dict(row))
         response = requests.post('https://devfest2k24-backend.onrender.com/kpi/', json=data)
-        if response.status_code != 200:
-            print(response.json())
 
 def feed_data():
     BASE_DIR = Path(__file__).resolve().parent.parent
